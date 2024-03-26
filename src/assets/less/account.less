@@ -1,0 +1,16 @@
+:deep(.van-cell-group--inset) {
+    margin: 0;
+}
+
+:deep(.van-cell) {
+    background: hsla(0, 0%, 100%, .1);
+    &::after{
+        display: none;
+    }
+}
+
+:deep(.van-field__control){
+    &::-webkit-input-placeholder{
+        color: hsla(0,0%,100%,.6);
+    }
+}

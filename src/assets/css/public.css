@@ -1,0 +1,9 @@
+.buy,
+.up {
+    background-color: rgb(242, 88, 85);
+}
+
+.sell,
+.low {
+    background-color: rgb(39, 199, 126);
+}
