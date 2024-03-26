@@ -1,15 +1,34 @@
 <template>
   <van-tabbar v-model="active">
-    <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
-    <van-tabbar-item name="search" icon="chart-trending-o">行情</van-tabbar-item>
-    <van-tabbar-item name="friends" icon="desktop-o">持仓</van-tabbar-item>
-    <van-tabbar-item name="setting" icon="newspaper-o">新闻</van-tabbar-item>
-    <van-tabbar-item name="setting1" icon="contact-o">我的</van-tabbar-item>
+    <van-tabbar-item
+      v-for="item in tabbarList"
+      :key="item.name"
+      :name="item.name"
+      :icon="item.icon"
+      @click="handleNavigate(item.path)">
+      {{ item.label }}
+    </van-tabbar-item>
   </van-tabbar>
 </template>
 
 <script setup>
+const { t } = useI18n();
+
 const active = ref('home');
+
+const router = useRouter();
+
+const tabbarList = ref([
+  { name: 'home', label: '首页', icon: 'home-o', path: '/' },
+  { name: 'search', label: '行情', icon: 'chart-trending-o', path: '/market' },
+  { name: 'friends', label: '持仓', icon: 'desktop-o', path: '' },
+  { name: 'setting', label: '新闻', icon: 'newspaper-o', path: '' },
+  { name: 'setting1', label: '我的', icon: 'contact-o', path: '/user' },
+]);
+
+const handleNavigate = (path) => {
+  router.push(path);
+}
 </script>
 
 <style lang="less" scoped></style>

@@ -22,7 +22,8 @@
               </div>
             </div>
             <div class="list-item-price">{{ item.price }}</div>
-            <div class="list-item-state" :class="item.riseFall > 0.1 ? 'up' : 'low'">{{ `${item.riseFall > 0.1 ? '+' : '-'}${item.riseFall}` }}</div>
+            <div class="list-item-state" :class="item.riseFall > 0.1 ? 'up' : 'low'">{{ `${item.riseFall > 0.1 ? '+' :
+              '-'}${item.riseFall}` }}</div>
           </div>
         </div>
       </div>
@@ -108,7 +109,7 @@ const list = ref(Array.from({ length: 10 }).map((_, index) => ({
           padding: 12px 10px;
           background-color: #fff;
           border-radius: 15px;
-          align-items: center;
+          align-self: center;
 
           &-token {
             display: flex;

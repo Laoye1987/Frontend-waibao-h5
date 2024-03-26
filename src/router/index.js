@@ -37,6 +37,12 @@ const router = createRouter({
           component: () => import('@/views/Market/index.vue')
         },
         {
+          path: 'user',
+          name: 'user',
+          meta: { title: '我的', id: 0 },
+          component: () => import('@/views/User/index.vue')
+        },
+        {
           hide: true,
           path: '/:pathMatch(.*)*',
           component: () => import('@/views/NotFound/index.vue')

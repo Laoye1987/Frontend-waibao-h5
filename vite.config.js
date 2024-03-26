@@ -1,6 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
-import path from 'path';
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx' // 开启jsx配置
 import postCssPxToRem from 'postcss-pxtorem';
@@ -22,7 +21,7 @@ export default defineConfig(({ mode }) => {
       removeConsole(),
       AutoImport({
         // 自动引入的api从这里找
-        imports: ['vue', 'vue-router', 'pinia'],
+        imports: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
         // 根据项目情况配置eslintrc，默认是不开启的
         eslintrc: {
           enabled: false, // Default `false`
