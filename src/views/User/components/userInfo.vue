@@ -9,14 +9,15 @@
         </div>
       </div>
       <div class="section2">
-        <div class="btn left-btn">Wallet</div>
-        <div class="btn right-btn">Edit</div>
+        <div class="btn left-btn" @click="router.push('/wallet')">Wallet</div>
+        <div class="btn right-btn" @click="router.push('/Edit')">Edit</div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+const router = useRouter();
 </script>
 
 <style scoped lang="less">

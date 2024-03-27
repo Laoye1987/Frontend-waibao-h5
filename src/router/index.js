@@ -48,6 +48,36 @@ const router = createRouter({
           component: () => import('@/views/NotFound/index.vue')
         }
       ]
+    },
+    {
+      path: '/realName',
+      name: 'realName',
+      component: () => import('@/views/User/views/realName/index.vue')
+    },
+    {
+      path: '/changePwd',
+      name: 'changePwd',
+      component: () => import('@/views/User/views/changePwd/index.vue')
+    },
+    {
+      path: '/customer',
+      name: 'customer',
+      component: () => import('@/views/User/views/customer/index.vue')
+    },
+    {
+      path: '/aboutUs',
+      name: 'customer',
+      component: () => import('@/views/User/views/aboutUs/index.vue')
+    },
+    {
+      path: '/wallet',
+      name: 'wallet',
+      component: () => import('@/views/User/views/wallet/index.vue')
+    },
+    {
+      path: '/edit',
+      name: 'customer',
+      component: () => import('@/views/User/views/edit/index.vue')
     }
   ]
 })
