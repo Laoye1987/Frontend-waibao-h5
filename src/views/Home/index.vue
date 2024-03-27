@@ -13,18 +13,7 @@
       <div class="home-low-item">
         <div class="label">行情</div>
         <div class="list">
-          <div class="list-item" v-for="(item, index) in list" :key="index">
-            <div class="list-item-token">
-              <img class="img" :src="item.img" alt="">
-              <div class="title">
-                <div>{{ item.name }}</div>
-                <div>GBPUSD</div>
-              </div>
-            </div>
-            <div class="list-item-price">{{ item.price }}</div>
-            <div class="list-item-state" :class="item.riseFall > 0.1 ? 'up' : 'low'">{{ `${item.riseFall > 0.1 ? '+' :
-              '-'}${item.riseFall}` }}</div>
-          </div>
+          <TokenItem v-for="(item, index) in list" :key="index" :item="item" />
         </div>
       </div>
     </div>
@@ -32,9 +21,11 @@
 </template>
 
 <script setup>
+import TokenItem from "@/components/tokenItem.vue";
 const list = ref(Array.from({ length: 10 }).map((_, index) => ({
   img: "",
   name: 'GBPUSD',
+  abbr: 'GBPUSD',
   price: 1.27073,
   riseFall: Math.random().toFixed(2)
 })))
@@ -101,49 +92,6 @@ const list = ref(Array.from({ length: 10 }).map((_, index) => ({
         flex-direction: column;
         gap: 7px;
         padding: 0 18px;
-
-        &-item {
-          display: grid;
-          grid-template-columns: auto 75px 75px;
-          margin-bottom: 7px;
-          padding: 12px 10px;
-          background-color: #fff;
-          border-radius: 15px;
-          align-self: center;
-
-          &-token {
-            display: flex;
-            gap: 10px;
-
-            .img {
-              width: 34px;
-              height: 34px;
-
-              img {
-                width: 100%;
-                height: 100%;
-              }
-            }
-
-            .title {
-              font-size: 14px;
-            }
-          }
-
-          &-price {
-            font-size: 14px;
-            color: #132E3D;
-          }
-
-          &-state {
-            line-height: 34px;
-            border-radius: 2px;
-            text-align: center;
-            color: #FFFFFF;
-            box-sizing: border-box;
-            font-size: 12px;
-          }
-        }
       }
     }
   }
