@@ -10,6 +10,7 @@ import autoprefixer from 'autoprefixer' // css 添加内核前缀
 import removeConsole from 'vite-plugin-remove-console'; // 删除console
 import { VantResolver } from '@vant/auto-import-resolver';
 import Components from 'unplugin-vue-components/vite';
+import legacy from '@vitejs/plugin-legacy';
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
@@ -73,6 +74,9 @@ export default defineConfig(({ mode }) => {
       }),
       Components({
         resolvers: [VantResolver()],
+      }),
+      legacy({
+        targets: ['defaults', 'not IE 11']
       }),
     ],
     // mode: 'development', // 模式
