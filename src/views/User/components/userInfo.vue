@@ -2,15 +2,17 @@
   <div class="user-bg">
     <div class="user-box">
       <div class="section1">
-        <div class="left"></div>
+        <div class="left">
+          <img :src="getImageUrl('avator.png')" alt="">
+        </div>
         <div class="right">
           <div class="user-name">user299137</div>
           <div class="user-id">ID: 245</div>
         </div>
       </div>
       <div class="section2">
-        <div class="btn left-btn" @click="router.push('/wallet')">Wallet</div>
-        <div class="btn right-btn" @click="router.push('/Edit')">Edit</div>
+        <div class="btn left-btn" @click="router.push('/wallet')">钱包</div>
+        <div class="btn right-btn" @click="router.push('/Edit')">编辑</div>
       </div>
     </div>
   </div>
@@ -18,6 +20,10 @@
 
 <script setup>
 const router = useRouter();
+
+const getImageUrl = (name) => {
+  return new URL(`/src/assets/images/user/${name}`, import.meta.url).href;
+}
 </script>
 
 <style scoped lang="less">
@@ -38,8 +44,13 @@ const router = useRouter();
       .left {
         width: 69px;
         height: 69px;
-        background-color: red;
         margin-right: 16px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
       }
 
       .right {

@@ -35,5 +35,10 @@ const router = useRouter()
     display: flex;
     gap: 10px;
   }
+
+  .right {
+    display: flex;
+    align-items: center;
+  }
 }
 </style>

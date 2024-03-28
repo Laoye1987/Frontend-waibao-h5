@@ -114,6 +114,12 @@ const router = createRouter({
       meta: { title: '新钱包' },
       component: () => import('@/views/User/views/addWallet/index.vue')
     },
+    {
+      path: '/addCard',
+      name: 'addCard',
+      meta: { title: '新钱包' },
+      component: () => import('@/views/User/views/addCard/index.vue')
+    },
     // 首页页面
     {
       path: '/notice',

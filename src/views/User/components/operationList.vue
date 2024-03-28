@@ -3,18 +3,22 @@
     <div class="operation-list">
       <div class="item" v-for="item in operationList" :key="item.key" @click="functionMap[item.key]">
         <div class="icon">
-          <img :src="`/src/assets/images/user/${item.imgUrl}`" alt="">
+          <img :src="getImageUrl(item.imgUrl)" alt="">
         </div>
         <div class="label">{{ item.name }}</div>
-        <div class="value">
+        <div class="value" v-if="item.value">
           <template v-if="item.key === 'maketModel'">
-            <div class="up-down-icon">{{ curModelValue }}</div>
+            <div class="up-down-icon">
+              <img :src="getImageUrl(curModelValue == '0' ? 'icon-down-red.png' : 'icon-up-red.png')" alt="">
+            </div>
           </template>
           <template v-else>
             {{ item.value }}
           </template>
         </div>
-        <div class="right-icon" v-if="item.key !== 'version'"></div>
+        <div class="right-icon" v-if="item.key !== 'version'">
+          <van-icon size="10" name="/src/assets/images/user/icon-nest-arrow.png" />
+        </div>
       </div>
     </div>
     <div class="logout-box">
@@ -37,7 +41,7 @@ const operationList = [
   { key: 'realName', name: '实名认证', imgUrl: 'icon-real.png', value: '' },
   { key: 'language', name: '语言', imgUrl: 'icon-lang.png', value: '简体中文' },
   { key: 'changePwd', name: '修改密码', imgUrl: 'icon-password.png', value: '' },
-  { key: 'maketModel', name: '市场模式', imgUrl: 'icon-market.png', value: '' },
+  { key: 'maketModel', name: '市场模式', imgUrl: 'icon-market.png', value: 'x' },
   { key: 'customer', name: '线上客服', imgUrl: 'icon-service.png', value: '' },
   { key: 'aboutUs', name: '关于我们', imgUrl: 'icon-about.png', value: '' },
   { key: 'version', name: '版本', imgUrl: 'icon-about.png', value: '100' },
@@ -78,7 +82,8 @@ const functionMap = {
 }
 
 const handleLogout = () => {
-  console.log('注销');
+  localStorage.removeItem('token');
+  router.push('/login');
 }
 
 const curModelValue = ref()
@@ -89,6 +94,11 @@ const maketModelList = [
 const handleConfirm = (value) => {
   curModelValue.value = value
 }
+
+function getImageUrl(name) {
+  return new URL(`/src/assets/images/user/${name}`, import.meta.url).href;
+}
+
 </script>
 
 <style scoped lang="less">
@@ -136,15 +146,18 @@ const handleConfirm = (value) => {
         .up-down-icon {
           width: 16px;
           height: 11px;
-          background-color: red;
+
+          img {
+            width: 100%;
+            height: 100%;
+          }
         }
       }
 
       .right-icon {
-        width: 4px;
-        height: 8px;
-        background-color: red;
         margin-left: 12px;
+        display: flex;
+        align-items: center;
       }
     }
   }

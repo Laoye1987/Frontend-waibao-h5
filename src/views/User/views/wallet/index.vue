@@ -2,7 +2,7 @@
   <div class="wallet">
     <NavBar leftText="返回">
       <template #right>
-        <div class="add-wallet" @click="router.push('/addWallet')"></div>
+        <van-icon size="14" name="plus" @click="handleRouter" />
       </template>
     </NavBar>
     <div class="tabs-box">
@@ -17,7 +17,12 @@
       </div>
     </div>
     <div class="wallet-content">
-      <div class="empty"></div>
+      <div class="empty">
+        <van-empty
+          image="src/assets/images/default.png"
+          :image-size="[286, 182]" />
+
+      </div>
     </div>
   </div>
 </template>
@@ -35,15 +40,18 @@ const typeList = [
 const selectType = (item) => {
   curType.value = item.value
 }
+
+const handleRouter = () => {
+  if (curType.value === 'addr') {
+    router.push('/addWallet')
+  }
+  if (curType.value === 'card') {
+    router.push('/addCard')
+  }
+}
 </script>
 
 <style scoped lang="less">
-.add-wallet {
-  width: 13px;
-  height: 13px;
-  background-color: red;
-}
-
 .tabs-box {
   display: flex;
   justify-content: center;
@@ -80,6 +88,5 @@ const selectType = (item) => {
   transform: translate(-50%, -50%);
   width: 286px;
   height: 182px;
-  background-color: red;
 }
 </style>
