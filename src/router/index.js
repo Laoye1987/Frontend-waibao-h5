@@ -147,5 +147,16 @@ const router = createRouter({
     }
   ]
 })
-
+// 路由守卫 前
+router.beforeEach((to, from, next) => {
+  // 获取当前路径
+  const currentPath = to.path
+  const token = localStorage.getItem('token')
+  //有token 或者 array下的路径都可以进
+  if (token || ['/login', '/register', '/forgetPwd'].includes(currentPath)) {
+    next()
+  } else {
+    next('/login')
+  }
+})
 export default router
