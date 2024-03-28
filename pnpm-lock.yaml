@@ -20,6 +20,9 @@ dependencies:
   dotenv:
     specifier: ^16.0.3
     version: 16.0.3
+  klinecharts:
+    specifier: ^9.8.2
+    version: 9.8.2
   pinia:
     specifier: ^2.0.28
     version: 2.0.28(vue@3.2.45)
@@ -3158,6 +3161,11 @@ packages:
     dependencies:
       json-buffer: 3.0.1
     dev: true
+
+  /klinecharts@9.8.2:
+    resolution: {integrity: sha512-ayJDIJVVYOMRciljGKknc+WpmLBEvdxY4RX9JCEpVwymGOWRG1Y6VFDSYOg4MlLRjgIr9tKAtIG0JUZ79uZQgw==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /less@4.1.3:
     resolution: {integrity: sha512-w16Xk/Ta9Hhyei0Gpz9m7VS8F28nieJaL/VyShID7cYvP6IL5oHeL6p4TXSDJqZE/lNv0oJ2pGVjJsRkfwm5FA==}
