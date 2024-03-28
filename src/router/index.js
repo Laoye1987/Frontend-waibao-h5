@@ -73,7 +73,7 @@ const router = createRouter({
     },
     {
       path: '/echartDetails',
-      name: 'EchartDetails',
+      name: 'echartDetails',
       meta: { title: 'token详情' },
       component: () => import('@/views/EchartDetails/index.vue')
     },
