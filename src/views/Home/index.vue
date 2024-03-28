@@ -14,7 +14,7 @@
       <div class="home-top-account">
         <div class="title">
           <div class="left">帳戶總額</div>
-          <div class="right">
+          <div class="right" @click="selectAccount">
             <van-icon :name="exchange" />
             <div>真實帳戶</div>
           </div>
@@ -58,6 +58,8 @@ import order from '@/assets/images/home/order.png'
 import logo from '@/assets/images/logo.png'
 import service from '@/assets/images/home/service.png'
 import tips from '@/assets/images/home/tips.png'
+import { showConfirmDialog } from 'vant';
+
 import TokenItem from "@/components/tokenItem.vue";
 const list = ref(Array.from({ length: 10 }).map((_, index) => ({
   img: "",
@@ -66,6 +68,17 @@ const list = ref(Array.from({ length: 10 }).map((_, index) => ({
   price: 1.27073,
   riseFall: Math.random().toFixed(2)
 })))
+
+const selectAccount = () => {
+  showConfirmDialog({
+    title: '提示',
+    message: '当前为真实账户，是否切换到虚拟账户'
+  }).then(() => {
+    // on confirm
+  }).catch(() => {
+    // on cancel
+  });
+}
 </script>
 
 <style lang="less" scoped>
