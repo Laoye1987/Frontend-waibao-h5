@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="item" @click="jumpUrl">
     <div class="item-token">
       <img class="img" :src="props.item.img" alt="">
       <div class="title">
@@ -26,6 +26,11 @@ const props = defineProps({
     })
   }
 })
+
+const router = useRouter();
+const jumpUrl = () => {
+  router.push('/echartDetails')
+}
 </script>
 
 <style lang="less" scoped>

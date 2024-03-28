@@ -48,15 +48,15 @@
           <div>1.26666</div>
         </div>
         <div class="item">
-          <div>高</div>
+          <div>低</div>
           <div>1.26666</div>
         </div>
         <div class="item">
-          <div>高</div>
+          <div>開</div>
           <div>1.26666</div>
         </div>
         <div class="item">
-          <div>高</div>
+          <div>總量</div>
           <div>1.26666</div>
         </div>
       </div>
@@ -65,21 +65,30 @@
       <van-button round block type="primary" @click="operation('buy')">买入</van-button>
       <van-button round block type="danger" @click="operation('sell')">卖出</van-button>
     </div>
-    <Model ref="modelRef" />
+    <Model ref="modelRef" :buySellType="buySellType" />
   </div>
 </template>
 
 <script setup>
 import generatedDataList from "@/utils/demo.js";
 import { init, dispose } from 'klinecharts'
+import config from './chartConfig.js'
 
 import Model from "./model.vue";
 import unStar from '@/assets/images/unStar.png'
 import star from '@/assets/images/star.png'
 
+
 const router = useRouter()
 
+const buySellType = ref()
 const modelRef = ref()
+// 买入卖出
+const operation = (type) => {
+  modelRef.value.setShow()
+  buySellType.value = type
+}
+
 // 初始化图表
 let chart = null
 // 收藏
@@ -148,16 +157,12 @@ function genData(timestamp = new Date().getTime(), length = 800) {
   return dataList
 }
 
-// 买入卖出
-const operation = (type) => {
-  modelRef.value.setShow()
-}
 onMounted(() => {
-  chart = init('chart')
+  chart = init('chart', config)
   chart.setStyles({
     yAxis: { inside: 'inside' },
     candle: {
-      tooltip: { custom: '' }
+      tooltip: { custom: () => [] }
     }
   })
   // 为图表添加数据
@@ -182,7 +187,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   // 销毁图表
-  dispose('klinecharts-chart')
+  dispose(chart)
 })
 </script>
 
@@ -210,6 +215,8 @@ onUnmounted(() => {
 
   &-echart {
     padding: 15px 18px;
+    min-height: 357px;
+    box-sizing: border-box;
 
     &-container {
       background-color: #FFFFFF;
@@ -275,6 +282,7 @@ onUnmounted(() => {
       #chart {
         width: 100%;
         height: 249px;
+        position: relative;
       }
     }
   }
