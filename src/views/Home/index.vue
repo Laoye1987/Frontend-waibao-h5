@@ -1,6 +1,38 @@
 <template>
   <div class="home">
-    <div class="home-top"></div>
+    <div class="home-top">
+      <div class="home-top-header">
+        <div class="left">
+          <img class="logo" :src="logo" alt="">
+          <div>userName</div>
+        </div>
+        <div class="right">
+          <van-icon size="25" :name="service" />
+          <van-icon size="25" :name="tips" />
+        </div>
+      </div>
+      <div class="home-top-account">
+        <div class="title">
+          <div class="left">帳戶總額</div>
+          <div class="right">
+            <van-icon :name="exchange" />
+            <div>真實帳戶</div>
+          </div>
+        </div>
+        <div class="number">
+          $0.000
+        </div>
+        <div class="operation">
+          <div class="left">
+            <div class="btn"> 入金</div>
+            <div class="btn out"> 出金</div>
+          </div>
+          <div class="right">
+            <van-icon :name="order" />
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="home-low">
       <div class="home-low-item">
         <div class="label">熱門</div>
@@ -21,6 +53,11 @@
 </template>
 
 <script setup>
+import exchange from '@/assets/images/home/exchange.png'
+import order from '@/assets/images/home/order.png'
+import logo from '@/assets/images/logo.png'
+import service from '@/assets/images/home/service.png'
+import tips from '@/assets/images/home/tips.png'
 import TokenItem from "@/components/tokenItem.vue";
 const list = ref(Array.from({ length: 10 }).map((_, index) => ({
   img: "",
@@ -33,7 +70,6 @@ const list = ref(Array.from({ length: 10 }).map((_, index) => ({
 
 <style lang="less" scoped>
 .home {
-  padding-bottom: 50px;
 
   &-top {
     padding: 22px 19px 27px;
@@ -41,6 +77,88 @@ const list = ref(Array.from({ length: 10 }).map((_, index) => ({
     background-size: cover;
     min-height: 270px;
     box-sizing: border-box;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #FFFFFF;
+
+        .logo {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .right {
+        display: flex;
+        gap: 10px;
+      }
+    }
+
+    &-account {
+      padding: 21px 0;
+      color: #F3F3F3;
+
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        line-height: 1.5;
+        margin-bottom: 7px;
+
+        .right {
+          display: flex;
+          gap: 4px;
+          align-items: center;
+          background-color: #2664FA;
+          padding: 8px;
+          border-radius: 15px;
+        }
+      }
+
+      .number {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 1.5;
+        margin-bottom: 15px;
+      }
+
+      .operation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .left {
+          display: flex;
+          gap: 10px;
+          font-size: 12px;
+
+          .btn {
+            min-width: 100px;
+            background-color: #FFFFFF;
+            padding: 10px 18px;
+            text-align: center;
+            border-radius: 15px;
+            color: #000000;
+            box-sizing: border-box;
+          }
+
+          .out {
+            background-color: #2664FA;
+            color: #FFFFFF;
+          }
+        }
+      }
+    }
   }
 
   &-low {
@@ -50,6 +168,7 @@ const list = ref(Array.from({ length: 10 }).map((_, index) => ({
     border-radius: 27px 27px 0 0;
     box-sizing: border-box;
     padding-top: 11px;
+    padding-bottom: 50px;
 
     &-item {
       &:first-child {

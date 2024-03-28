@@ -7,7 +7,7 @@
       <div class="position-low-types">
         <div
           class="btn"
-          @click="curType = item.value"
+          @click="selectType(item)"
           :class="curType === item.value ? 'active' : ''"
           v-for="(item, index) in typeList"
           :key="index">
@@ -15,7 +15,11 @@
         </div>
       </div>
       <div class="position-low-list">
-        <van-empty />
+        <div class="list" v-if="list.length > 0"></div>
+        <div class="noData" v-else>
+          <van-loading v-if="loading" />
+          <van-empty v-else />
+        </div>
       </div>
     </div>
   </div>
@@ -23,17 +27,30 @@
 
 <script setup>
 const curType = ref('position')
+const loading = ref(false)
+const list = ref([])
 const typeList = [
   { label: "持倉", value: "position" },
   { label: "委託", value: "entrustment" },
   { label: "歷史", value: "history" }
 ]
+const getList = () => {
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+  }, 1000)
+}
+const selectType = (item) => {
+  curType.value = item.value
+  getList()
+}
+onMounted(() => {
+  getList()
+})
 </script>
 
 <style lang="less" scoped>
 .position {
-  padding-bottom: 50px;
-
   &-top {
     padding: 22px 19px 27px;
     background: url('@/assets/images/homeBg.png') no-repeat;
@@ -79,6 +96,13 @@ const typeList = [
 
     &-list {
       margin-top: 10px;
+
+      .noData {
+        height: calc(100vh - 270px - 50px - 20px - 41px - 10px + 27px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 }
