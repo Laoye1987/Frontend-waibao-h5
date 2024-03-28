@@ -26,7 +26,7 @@
       <span @click="jumpUrl('/forgetPwd')">找回</span>
     </div>
     <div class="login-btn">
-      <van-button round block color="#FFFFFF">
+      <van-button round block color="#FFFFFF" @click="login">
         <span class="text">登 錄</span>
       </van-button>
     </div>
@@ -45,6 +45,10 @@ import { useRouter } from 'vue-router';
 const router = useRouter()
 const jumpUrl = (item) => {
   router.push(item)
+}
+const login = () => {
+  localStorage.setItem('token', 123)
+  jumpUrl('/')
 }
 </script>
 
