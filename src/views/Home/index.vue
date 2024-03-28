@@ -7,8 +7,8 @@
           <div>userName</div>
         </div>
         <div class="right">
-          <van-icon size="25" :name="service" />
-          <van-icon size="25" :name="tips" />
+          <van-icon size="25" @click="jumpUrl('/customer')" :name="service" />
+          <van-icon size="25" @click="jumpUrl('/notice')" :name="tips" />
         </div>
       </div>
       <div class="home-top-account">
@@ -53,22 +53,20 @@
 </template>
 
 <script setup>
+import { showConfirmDialog } from 'vant';
+
 import exchange from '@/assets/images/home/exchange.png'
 import order from '@/assets/images/home/order.png'
 import logo from '@/assets/images/logo.png'
 import service from '@/assets/images/home/service.png'
 import tips from '@/assets/images/home/tips.png'
-import { showConfirmDialog } from 'vant';
-
 import TokenItem from "@/components/tokenItem.vue";
-const list = ref(Array.from({ length: 10 }).map((_, index) => ({
-  img: "",
-  name: 'GBPUSD',
-  abbr: 'GBPUSD',
-  price: 1.27073,
-  riseFall: Math.random().toFixed(2)
-})))
 
+const router = useRouter()
+
+const list = ref([])
+
+// 切换账号
 const selectAccount = () => {
   showConfirmDialog({
     title: '提示',
@@ -79,6 +77,25 @@ const selectAccount = () => {
     // on cancel
   });
 }
+// 跳转路由
+const jumpUrl = (item) => {
+  router.push(item)
+}
+// 请求
+const getList = () => {
+  setTimeout(() => {
+    list.value = Array.from({ length: 10 }).map((_, index) => ({
+      img: "",
+      name: 'GBPUSD',
+      abbr: 'GBPUSD',
+      price: 1.27073,
+      riseFall: Math.random().toFixed(2)
+    }))
+  }, 1000)
+}
+onMounted(() => {
+  getList()
+})
 </script>
 
 <style lang="less" scoped>
