@@ -2,21 +2,17 @@
   <van-popup v-model:show="showPicker" round position="bottom">
     <van-picker
       v-model="curModel"
-      :columns="maketModelList"
+      :columns="options"
       @cancel="showPicker = false"
       @confirm="onConfirm" />
   </van-popup>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+const props = defineProps(['options'])
+const emit = defineEmits(['confirm'])
 
 const showPicker = ref(false)
-
-const maketModelList = [
-  { text: "红跌绿涨", value: "0", key: "greenUp" },
-  { text: "红涨绿跌", value: "1", key: "redUp" },
-]
 
 const curModel = ref([])
 
@@ -26,13 +22,15 @@ const show = () => {
 
 const onConfirm = () => {
   show()
+  emit('confirm', curModel.value[0], props.options.find(item => item.value === curModel.value[0]).text)
 }
 
 onMounted(() => {
-  curModel.value = ['0']
+  curModel.value = [props.options[0].value]
+  emit('confirm', curModel.value[0], props.options.find(item => item.value === curModel.value[0]).text)
 })
 
-defineExpose({ show, curModel })
+defineExpose({ show })
 </script>
 
 <style scoped lang="scss"></style>

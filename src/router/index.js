@@ -82,31 +82,37 @@ const router = createRouter({
       path: '/realName',
       name: 'realName',
       meta: { title: '实名认证' },
-      component: () => import('@/views/User/views/RealName/index.vue')
+      component: () => import('@/views/User/views/realName/index.vue')
     },
     {
       path: '/changePwd',
       name: 'changePwd',
       meta: { title: '修改密码' },
-      component: () => import('@/views/User/views/ChangePwd/index.vue')
+      component: () => import('@/views/User/views/changePwd/index.vue')
     },
     {
       path: '/aboutUs',
       name: 'aboutUs',
       meta: { title: '关于我们' },
-      component: () => import('@/views/User/views/AboutUs/index.vue')
+      component: () => import('@/views/User/views/aboutUs/index.vue')
     },
     {
       path: '/wallet',
       name: 'wallet',
       meta: { title: '钱包' },
-      component: () => import('@/views/User/views/Wallet/index.vue')
+      component: () => import('@/views/User/views/wallet/index.vue')
     },
     {
       path: '/edit',
       name: 'edit',
       meta: { title: '编辑' },
-      component: () => import('@/views/User/views/Edit/index.vue')
+      component: () => import('@/views/User/views/edit/index.vue')
+    },
+    {
+      path: '/addWallet',
+      name: 'addWallet',
+      meta: { title: '新钱包' },
+      component: () => import('@/views/User/views/addWallet/index.vue')
     },
     // 首页页面
     {
