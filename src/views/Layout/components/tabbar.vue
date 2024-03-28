@@ -12,23 +12,23 @@
 </template>
 
 <script setup>
-const { t } = useI18n();
-
-const active = ref('home');
-
 const router = useRouter();
-
+console.log(router.currentRoute.value);
+const active = ref(router.currentRoute.value.name);
 const tabbarList = ref([
   { name: 'home', label: '首页', icon: 'home-o', path: '/' },
-  { name: 'search', label: '行情', icon: 'chart-trending-o', path: '/market' },
-  { name: 'friends', label: '持仓', icon: 'desktop-o', path: '' },
-  { name: 'setting', label: '新闻', icon: 'newspaper-o', path: '' },
-  { name: 'setting1', label: '我的', icon: 'contact-o', path: '/user' },
+  { name: 'market', label: '行情', icon: 'chart-trending-o', path: '/market' },
+  { name: 'position', label: '持仓', icon: 'desktop-o', path: '/position' },
+  { name: 'news', label: '新闻', icon: 'newspaper-o', path: '/news' },
+  { name: 'my', label: '我的', icon: 'contact-o', path: '/user' },
 ]);
 
 const handleNavigate = (path) => {
   router.push(path);
 }
+onMounted(() => {
+  active.value = router.currentRoute.value.name
+})
 </script>
 
 <style lang="less" scoped></style>

@@ -37,6 +37,18 @@ const router = createRouter({
           component: () => import('@/views/Market/index.vue')
         },
         {
+          path: 'position',
+          name: 'position',
+          meta: { title: '持仓', id: 0 },
+          component: () => import('@/views/Position/index.vue')
+        },
+        {
+          path: 'news',
+          name: 'news',
+          meta: { title: '新闻', id: 0 },
+          component: () => import('@/views/News/index.vue')
+        },
+        {
           path: 'user',
           name: 'user',
           meta: { title: '我的', id: 0 },
