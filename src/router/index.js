@@ -64,6 +64,20 @@ const router = createRouter({
         }
       ]
     },
+    // 公用页面
+    {
+      path: '/customer',
+      name: 'customer',
+      meta: { title: '线上客服' },
+      component: () => import('@/views/Customer/index.vue')
+    },
+    {
+      path: '/echartDetails',
+      name: 'EchartDetails',
+      meta: { title: 'token详情' },
+      component: () => import('@/views/EchartDetails/index.vue')
+    },
+    // 个人页面
     {
       path: '/realName',
       name: 'realName',
@@ -94,17 +108,30 @@ const router = createRouter({
       meta: { title: '编辑' },
       component: () => import('@/views/User/views/Edit/index.vue')
     },
-    {
-      path: '/customer',
-      name: 'customer',
-      meta: { title: '线上客服' },
-      component: () => import('@/views/Customer/index.vue')
-    },
+    // 首页页面
     {
       path: '/notice',
       name: 'notice',
       meta: { title: '通知' },
-      component: () => import('@/views/Notice/index.vue')
+      component: () => import('@/views/Home/views/Notice/index.vue')
+    },
+    {
+      path: '/out',
+      name: 'out',
+      meta: { title: '出金' },
+      component: () => import('@/views/Home/views/Out/index.vue')
+    },
+    {
+      path: '/enter',
+      name: 'enter',
+      meta: { title: '入金' },
+      component: () => import('@/views/Home/views/Enter/index.vue')
+    },
+    {
+      path: '/fundsDetails',
+      name: 'fundsDetails',
+      meta: { title: '出金入金详情' },
+      component: () => import('@/views/Home/views/Details/index.vue')
     }
   ]
 })

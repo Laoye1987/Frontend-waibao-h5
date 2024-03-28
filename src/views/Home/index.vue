@@ -24,11 +24,11 @@
         </div>
         <div class="operation">
           <div class="left">
-            <div class="btn"> 入金</div>
-            <div class="btn out"> 出金</div>
+            <div class="btn" @click="jumpUrl('/enter')"> 入金</div>
+            <div class="btn out" @click="jumpUrl('/out')"> 出金</div>
           </div>
           <div class="right">
-            <van-icon :name="order" />
+            <van-icon :name="order" @click="jumpUrl('/fundsDetails')" />
           </div>
         </div>
       </div>
