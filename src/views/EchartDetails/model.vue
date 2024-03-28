@@ -65,7 +65,9 @@ const props = defineProps({
     default: "sell"
   }
 })
+const checked = ref(false)
 const show = ref(false)
+const number = ref()
 const setShow = () => {
   show.value = !show.value
   curType.value = 'a'

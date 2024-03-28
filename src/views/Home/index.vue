@@ -35,14 +35,6 @@
     </div>
     <div class="home-low">
       <div class="home-low-item">
-        <div class="label">熱門</div>
-        <div class="card">
-          <div class="card-item"></div>
-          <div class="card-item"></div>
-          <div class="card-item"></div>
-        </div>
-      </div>
-      <div class="home-low-item">
         <div class="label">行情</div>
         <div class="list">
           <TokenItem v-for="(item, index) in list" :key="index" :item="item" />
