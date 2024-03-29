@@ -129,8 +129,6 @@ export default {
     newWallet: "新钱包",
     addAddr: "添加地址",
     preserve: "保存",
-    addCard: "添加银行卡",
-    bankName: "銀行名称",
     bankCard: '銀行卡',
     accountHolder: '開戶人',
     bankAddr: '銀行地址',
