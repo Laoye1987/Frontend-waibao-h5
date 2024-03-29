@@ -5,34 +5,37 @@
       <img :src="logo" alt="">
     </div>
     <div class="forgetPwd-title">
-      <div class="title">找 回</div>
-      <div class="subtitle">找回加入</div>
+      <div class="title">{{ $t('forgetPwd.forgetPwd') }}</div>
+      <div class="subtitle">{{ $t('forgetPwd.tips') }}</div>
     </div>
     <div class="forgetPwd-form">
       <van-field
         class="forgetPwd-form-item"
-        v-model="username"
-        placeholder="請輸入郵箱地址"
-        :rules="[{ required: true, message: '請輸入郵箱地址' }]" />
+        v-model="formData.email"
+        :placeholder="$t('public.placeholderEmail')"
+        :rules="[{ required: true, message: $t('public.placeholderEmail') }]" />
       <van-field
         class="forgetPwd-form-item"
-        v-model="password"
+        v-model="formData.password"
         type="password"
-        placeholder="請輸入密碼"
-        :rules="[{ required: true, message: '請輸入密碼' }]" />
+        :placeholder="$t('public.placeholderPwd')"
+        :rules="[{ required: true, message: $t('public.placeholderPwd') }]" />
       <van-field
         class="forgetPwd-form-item"
-        v-model="vCode"
-        placeholder="驗證碼"
-        :rules="[{ required: true, message: '請輸入驗證碼' }]">
+        v-model="formData.vCode"
+        :placeholder="$t('forgetPwd.vCode')"
+        :rules="[{ required: true, message: $t('forgetPwd.vCode') }]">
         <template #button>
-          <van-button size="small" type="primary">發送</van-button>
+          <van-button size="small" :disabled="isSendCode" type="primary" @click="sendCode">
+            <div v-if="!isSendCode">{{ $t('forgetPwd.send') }}</div>
+            <div v-else>{{ codeTime }}</div>
+          </van-button>
         </template>
       </van-field>
     </div>
-    <div class="forgetPwd-btn">
+    <div class="forgetPwd-btn" @click="submit">
       <van-button round block color="#FFFFFF">
-        <span class="text">提 交</span>
+        <span class="text">{{ $t('public.submit') }}</span>
       </van-button>
     </div>
   </div>
@@ -42,6 +45,19 @@
 <script setup>
 import logo from '@/assets/images/logo.png'
 import Header from '@/components/header.vue'
+import { useCode } from '@/hooks/getCode.js'
+const { codeTime, isSendCode, getCode } = useCode()
+const formData = ref({
+  email: "",
+  password: "",
+  vCode: ""
+})
+const submit = () => {
+  console.log(formData.value);
+}
+const sendCode = () => {
+  getCode()
+}
 </script>
   
   

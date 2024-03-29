@@ -62,8 +62,10 @@ const langType = {
 }
 
 onMounted(() => {
-  Locale.use(i18n.locale.value, langType[i18n.locale.value]);
-  curLangType.value = [i18n.locale.value]
+  const lang = localStorage.getItem('lang')
+  i18n.locale.value = lang
+  Locale.use(lang, langType[lang]);
+  curLangType.value = [lang]
 })
 
 defineExpose({

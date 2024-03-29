@@ -10,7 +10,7 @@
           :class="curType === item.value ? 'active' : ''"
           v-for="(item, index) in typeList"
           :key="index">
-          {{ item.label }}
+          {{ $t(item.label) }}
         </div>
       </div>
     </div>
@@ -23,8 +23,8 @@
 const router = useRouter()
 const curType = ref('out')
 const typeList = [
-  { label: "出金", value: "out" },
-  { label: "入金", value: "enter" },
+  { label: "public.out", value: "out" },
+  { label: "public.enter", value: "enter" },
 ]
 const selectType = (item) => {
   curType.value = item.value

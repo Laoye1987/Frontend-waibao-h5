@@ -1,5 +1,5 @@
 <template>
-  <NavBar leftText="关于我们" />
+  <NavBar :leftText="$t('my.aboutUs')" />
   <div class="content">
     <div v-html="content"></div>
   </div>

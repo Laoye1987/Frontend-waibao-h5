@@ -3,7 +3,7 @@
     <div class="out-navBar">
       <div class="left" @click="onClickLeft">
         <van-icon name="arrow-left" />
-        <div>出金</div>
+        <div>{{ $t('public.out') }}</div>
       </div>
       <div class="right">
         <div class="item"
@@ -11,26 +11,33 @@
           :class="curType === item.value ? 'active' : ''"
           v-for="(item, index) in typeList"
           :key="index">
-          {{ item.label }}
+          {{ $t(item.label) }}
         </div>
       </div>
     </div>
     <div class="out-content">
       <div class="item">
-        <div class="label">金额</div>
-        <van-field class="input" v-model="value" placeholder="请输入用户名" />
-        <div class="tips">參攷保證金: 0.000USDT</div>
+        <div class="label">{{ $t('public.money') }}</div>
+        <van-field
+          class="input"
+          v-model="value"
+          :placeholder="$t('public.placeholderMoney')" />
+        <div class="tips">{{ $t('public.margin') }}: 0.000USDT</div>
       </div>
       <div class="item">
-        <div class="label">{{ curType === 'addr' ? '钱包地址' : '银行名称' }}</div>
+        <div class="label">{{
+          curType === 'addr'
+          ? $t('home.walletAddr')
+          : $t('home.bankName')
+        }}</div>
         <van-field
           class="input"
           v-model="fieldValue"
           is-link
           readonly
-          placeholder="请选择"
+          :placeholder="$t('public.pleaseSelect')"
           @click="showPicker = true" />
-        <div class="tips">最少入20</div>
+        <div class="tips">{{ $t('home.limitNumber') }}20</div>
         <van-popup v-model:show="showPicker" round position="bottom">
           <van-picker
             :columns="columns"
@@ -39,7 +46,7 @@
         </van-popup>
       </div>
       <div class="btn">
-        <van-button type="primary" block>块级元素</van-button>
+        <van-button type="primary" block>{{ $t('public.submit') }}</van-button>
       </div>
     </div>
   </div>
@@ -49,8 +56,8 @@ const router = useRouter()
 
 const curType = ref('addr')
 const typeList = [
-  { label: "钱包地址", value: "addr" },
-  { label: "银行卡", value: "card" },
+  { label: "home.walletAddr", value: "addr" },
+  { label: "home.card", value: "card" },
 ]
 const selectType = (item) => {
   curType.value = item.value

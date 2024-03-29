@@ -11,7 +11,7 @@
           :class="curType === item.value ? 'active' : ''"
           v-for="(item, index) in typeList"
           :key="index">
-          {{ item.label }}
+          {{ $t(item.label) }}
         </div>
       </div>
       <div class="position-low-list">
@@ -30,9 +30,9 @@ const curType = ref('position')
 const loading = ref(false)
 const list = ref([])
 const typeList = [
-  { label: "持倉", value: "position" },
-  { label: "委託", value: "entrustment" },
-  { label: "歷史", value: "history" }
+  { label: "position.position", value: "position" },
+  { label: "position.entrustment", value: "entrustment" },
+  { label: "position.history", value: "history" }
 ]
 const getList = () => {
   loading.value = true

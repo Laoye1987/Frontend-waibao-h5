@@ -5,9 +5,9 @@
         show-action
         v-model="search"
         shape="round"
-        placeholder="请输入搜索关键词">
+        :placeholder="$t('market.pleaseEnter')">
         <template #action>
-          <div @click="onClickButton">搜索</div>
+          <div @click="onClickButton">{{ $t('market.search') }}</div>
         </template>
       </van-search>
     </div>
@@ -21,7 +21,7 @@
         shrink
         @change="(name, title) => onChange(name, title)">
         <van-tab
-          :title="item.label"
+          :title="$t(item.label)"
           v-for="(item, index) in typeList.title"
           :key="index">
           <div class="list" v-if="typeList.list.length > 0">
@@ -48,11 +48,11 @@ const active = ref()
 const loading = ref(false)
 const typeList = ref({
   title: [
-    { label: '收藏', value: "collection" },
-    { label: '外匯', value: "foreign" },
-    { label: '指數', value: "index" },
-    { label: '大宗商品', value: "commodities" },
-    { label: '加密貨幣', value: "cryptocurrency" }
+    { label: 'market.collection', value: "collection" },
+    { label: 'market.foreign', value: "foreign" },
+    { label: 'market.index', value: "index" },
+    { label: 'market.commodities', value: "commodities" },
+    { label: 'market.cryptocurrency', value: "cryptocurrency" }
   ],
   list: []
 })

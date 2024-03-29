@@ -1,3 +1,3 @@
 <template>
-    <div>123456</div>
+    <div>NotFound</div>
 </template>

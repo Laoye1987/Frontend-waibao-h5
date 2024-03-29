@@ -1,21 +1,21 @@
 <template>
-  <NavBar leftText="修改密码" />
+  <NavBar :leftText="$t('my.modifyPwd')" />
   <div class="change-pwd-box">
     <div class="item">
-      <div class="label">新密码</div>
-      <van-field class="input" v-model="newPwd" placeholder="请输入新密码" />
+      <div class="label">{{ $t('my.newPwd') }}</div>
+      <van-field class="input" v-model="newPwd" :placeholder="$t('public.placeholder')" />
     </div>
     <div class="item">
-      <div class="label">确认密码</div>
-      <van-field class="input" v-model="confirmPwd" placeholder="请输入确认密码" />
+      <div class="label">{{ $t('my.vPwd') }}</div>
+      <van-field class="input" v-model="confirmPwd" :placeholder="$t('public.placeholder')" />
     </div>
     <div class="item">
-      <div class="label">旧密码</div>
-      <van-field class="input" v-model="oldPwd" placeholder="请输入旧密码" />
+      <div class="label">{{ $t('my.oldPws') }}</div>
+      <van-field class="input" v-model="oldPwd" :placeholder="$t('public.placeholder')" />
     </div>
   </div>
   <div class="btn">
-    <van-button type="primary" block>提交</van-button>
+    <van-button type="primary" block>{{ $t('public.submit') }}</van-button>
   </div>
 </template>
 

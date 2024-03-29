@@ -1,7 +1,7 @@
 <template>
   <div class="customer">
     <van-nav-bar
-      title="客服"
+      :title="$t('public.customer')"
       left-arrow
       @click-left="onClickLeft" />
     <iframe

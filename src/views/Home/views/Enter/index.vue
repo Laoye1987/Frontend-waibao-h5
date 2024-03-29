@@ -3,7 +3,7 @@
     <div class="notice-navBar">
       <div class="left" @click="onClickLeft">
         <van-icon name="arrow-left" />
-        <div>入金</div>
+        <div>{{ $t('public.enter') }}</div>
       </div>
       <div class="right">
         <div class="item"
@@ -11,43 +11,45 @@
           :class="curType === item.value ? 'active' : ''"
           v-for="(item, index) in typeList"
           :key="index">
-          {{ item.label }}
+          {{ $t(item.label) }}
         </div>
       </div>
     </div>
     <div class="notice-content">
       <div class="address" v-if="curType === 'addr'">
         <div class="item">
-          <div class="label">货币选择</div>
+          <div class="label">{{ $t('home.tokenSelect') }}</div>
           <van-field
             class="input"
             v-model="fieldValue"
             is-link
             readonly
-            placeholder="请选择"
+            :placeholder="$t('public.pleaseSelect')"
             @click="showPicker = true" />
         </div>
         <div class="item">
-          <div class="label">金额</div>
-          <van-field class="input" v-model="money" placeholder="请输入金额" />
-          <div class="tips">參攷保證金: 0.000USDT</div>
+          <div class="label">{{ $t('public.money') }}</div>
+          <van-field class="input"
+            v-model="money"
+            :placeholder="$t('public.placeholderMoney')" />
+          <div class="tips">{{ $t('public.margin') }}: 0.000USDT</div>
         </div>
         <div class="item">
-          <div class="label">凭证</div>
+          <div class="label">{{ $t('home.upLoadV') }}</div>
           <van-uploader :after-read="afterRead" />
         </div>
         <div class="item">
-          <div class="label">將截圖提交到以下地址</div>
+          <div class="label">{{ $t('home.transfer') }}</div>
           <div class="img">
             <img src="" alt="">
           </div>
         </div>
         <div class="copy">
-          <div>TFysUwA6KvStAAr2WqMUx8hgWwpKkgThpo</div>
+          <div>{{ address }}</div>
           <van-icon name="orders-o" @click="copy" />
         </div>
         <div class="btn">
-          <van-button type="primary" block>块级元素</van-button>
+          <van-button type="primary" block>{{ $t('public.submit') }}</van-button>
         </div>
       </div>
       <div class="card" v-else>
@@ -66,10 +68,12 @@
 const router = useRouter()
 
 const money = ref()
+const i18n = useI18n()
 const curType = ref('addr')
+const address = ref('TFysUwA6KvStAAr2WqMUx8hgWwpKkgThpo')
 const typeList = [
-  { label: "钱包地址", value: "addr" },
-  { label: "银行卡", value: "card" },
+  { label: "home.walletAddr", value: "addr" },
+  { label: "home.card", value: "card" },
 ]
 const selectType = (item) => {
   curType.value = item.value
@@ -80,11 +84,10 @@ const onClickLeft = () => {
 }
 const copy = async () => {
   try {
-    const text = operationList.find(item => item.key === 'inviteCode').value;
-    await navigator.clipboard.writeText(text);
-    showSuccessToast('复制成功');
+    await navigator.clipboard.writeText(address.value);
+    showSuccessToast(i18n.t('public.copySuccess'));
   } catch (err) {
-    showFailToast('复制成功');
+    showFailToast(i18n.t('public.error'));
   }
 }
 // demo

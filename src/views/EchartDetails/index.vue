@@ -3,7 +3,7 @@
     <div class="details-header">
       <div class="left" @click="onClickLeft">
         <van-icon size="18" name="arrow-left" />
-        <div>行情</div>
+        <div>{{ $t('echartDetails.market') }}</div>
       </div>
       <div class="rigth" @click="selectStar">
         <van-icon v-if="isStar" :name="unStar" />
@@ -41,29 +41,33 @@
       </div>
     </div>
     <div class="details-info">
-      <div class="label">统计</div>
+      <div class="label">{{ $t('echartDetails.statistics') }}</div>
       <div class="info">
         <div class="item">
-          <div>高</div>
+          <div>{{ $t('echartDetails.high') }}</div>
           <div>1.26666</div>
         </div>
         <div class="item">
-          <div>低</div>
+          <div>{{ $t('echartDetails.low') }}</div>
           <div>1.26666</div>
         </div>
         <div class="item">
-          <div>開</div>
+          <div>{{ $t('echartDetails.open') }}</div>
           <div>1.26666</div>
         </div>
         <div class="item">
-          <div>總量</div>
+          <div>{{ $t('echartDetails.total') }}</div>
           <div>1.26666</div>
         </div>
       </div>
     </div>
     <div class="details-btn">
-      <van-button round block type="primary" @click="operation('buy')">买入</van-button>
-      <van-button round block type="danger" @click="operation('sell')">卖出</van-button>
+      <van-button round block type="primary" @click="operation('buy')">
+        {{ $t('echartDetails.buy') }}
+      </van-button>
+      <van-button round block type="danger" @click="operation('sell')">
+        {{ $t('echartDetails.sell') }}
+      </van-button>
     </div>
     <Model ref="modelRef" :buySellType="buySellType" />
   </div>

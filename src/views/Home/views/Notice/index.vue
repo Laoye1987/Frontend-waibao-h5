@@ -1,7 +1,7 @@
 <template>
   <div class="notice">
     <van-nav-bar
-      title="通知"
+      :title="$t('home.notice')"
       left-arrow
       @click-left="onClickLeft" />
     <div class="content">

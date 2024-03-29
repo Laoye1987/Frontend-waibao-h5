@@ -5,37 +5,36 @@
       <img :src="logo" alt="">
     </div>
     <div class="register-title">
-      <div class="title">注 冊</div>
-      <div class="subtitle">注冊加入</div>
+      <div class="title">{{ $t('register.register') }}</div>
+      <div class="subtitle">{{ $t('register.tips') }}</div>
     </div>
     <div class="register-form">
       <van-field
         class="register-form-item"
-        v-model="username"
-        placeholder="請輸入郵箱地址"
-        :rules="[{ required: true, message: '請輸入郵箱地址' }]" />
+        v-model="formData.email"
+        :placeholder="$t('public.placeholderEmail')"
+        :rules="[{ required: true, message: $t('public.placeholderEmail') }]" />
       <van-field
         class="register-form-item"
-        v-model="password"
+        v-model="formData.password"
         type="password"
-        placeholder="請輸入密碼"
-        :rules="[{ required: true, message: '請輸入密碼' }]" />
+        :placeholder="$t('public.placeholderPwd')"
+        :rules="[{ required: true, message: $t('public.placeholderPwd') }]" />
       <van-field
         class="register-form-item"
-        v-model="password"
+        v-model="formData.againPwd"
         type="password"
-        placeholder="再次確認您的密碼"
-        :rules="[{ required: true, message: '再次確認您的密碼' }]" />
+        :placeholder="$t('register.againPwd')"
+        :rules="[{ required: true, message: $t('register.againPwd') }]" />
       <van-field
         class="register-form-item"
-        v-model="password"
-        type="password"
-        placeholder="請輸入邀請碼"
-        :rules="[{ required: true, message: '請輸入邀請碼' }]" />
+        v-model="formData.inviteCode"
+        :placeholder="$t('register.inviteCode')"
+        :rules="[{ required: true, message: $t('register.inviteCode') }]" />
     </div>
     <div class="register-btn">
-      <van-button round block color="#FFFFFF">
-        <span class="text">提 交</span>
+      <van-button round block color="#FFFFFF" @click="submit">
+        <span class="text">{{ $t('public.submit') }}</span>
       </van-button>
     </div>
   </div>
@@ -45,6 +44,16 @@
 <script setup>
 import logo from '@/assets/images/logo.png'
 import Header from '@/components/header.vue'
+const formData = ref({
+  email: "",
+  password: "",
+  againPwd: "",
+  inviteCode: ""
+})
+// 提交
+const submit = () => {
+  console.log(formData.value);
+}
 </script>
   
   

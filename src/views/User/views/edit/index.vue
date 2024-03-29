@@ -1,19 +1,19 @@
 <template>
-  <NavBar leftText="编辑" />
+  <NavBar :leftText="$t('my.edit')" />
   <div class="edit-box">
     <div class="item">
       <van-field
         class="input"
         v-model="name"
-        label="昵称"
+        :label="$t('my.name')"
         input-align="right" />
     </div>
     <div class="item avatar">
-      <div class="label">头像</div>
+      <div class="label">{{ $t('my.avatar') }}</div>
       <van-uploader :after-read="afterRead" class="upload-avatar" />
     </div>
     <div class="btn">
-      <van-button type="primary" block>提交</van-button>
+      <van-button type="primary" block>{{ $t('public.submit') }}</van-button>
     </div>
   </div>
 </template>

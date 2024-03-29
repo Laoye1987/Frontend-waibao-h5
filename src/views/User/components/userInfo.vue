@@ -11,8 +11,12 @@
         </div>
       </div>
       <div class="section2">
-        <div class="btn left-btn" @click="router.push('/wallet')">钱包</div>
-        <div class="btn right-btn" @click="router.push('/Edit')">编辑</div>
+        <div class="btn left-btn" @click="router.push('/wallet')">
+          {{ $t('my.wallet') }}
+        </div>
+        <div class="btn right-btn" @click="router.push('/Edit')">
+          {{ $t('my.edit') }}
+        </div>
       </div>
     </div>
   </div>

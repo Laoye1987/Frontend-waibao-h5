@@ -13,10 +13,11 @@
       </div>
       <div class="home-top-account">
         <div class="title">
-          <div class="left">帳戶總額</div>
+          <div class="left">{{ $t('home.account') }}</div>
           <div class="right" @click="selectAccount">
             <van-icon :name="exchange" />
-            <div>真實帳戶</div>
+            <div v-if="curType === 'real'">{{ $t('home.real') }}</div>
+            <div v-else>{{ $t('home.demo') }}</div>
           </div>
         </div>
         <div class="number">
@@ -24,8 +25,8 @@
         </div>
         <div class="operation">
           <div class="left">
-            <div class="btn" @click="jumpUrl('/enter')"> 入金</div>
-            <div class="btn out" @click="jumpUrl('/out')"> 出金</div>
+            <div class="btn" @click="jumpUrl('/enter')"> {{ $t('public.enter') }}</div>
+            <div class="btn out" @click="jumpUrl('/out')"> {{ $t('public.out') }}</div>
           </div>
           <div class="right">
             <van-icon :name="order" @click="jumpUrl('/fundsDetails')" />
@@ -35,7 +36,7 @@
     </div>
     <div class="home-low">
       <div class="home-low-item">
-        <div class="label">行情</div>
+        <div class="label">{{ $t('home.market') }}</div>
         <div class="list">
           <TokenItem v-for="(item, index) in list" :key="index" :item="item" />
         </div>
@@ -54,16 +55,22 @@ import service from '@/assets/images/home/service.png'
 import tips from '@/assets/images/home/tips.png'
 import TokenItem from "@/components/tokenItem.vue";
 
+const i18n = useI18n()
 const router = useRouter()
-
+//real 真实 ,demo 虚拟
+const curType = ref('real')
 const list = ref([])
 
 // 切换账号
 const selectAccount = () => {
   showConfirmDialog({
-    title: '提示',
-    message: '当前为真实账户，是否切换到虚拟账户'
+    title: i18n.t('home.prompt'),
+    message: i18n.t('home.tips', {
+      type1: curType.value === 'real' ? i18n.t('home.real') : i18n.t('home.demo'),
+      type2: curType.value === 'real' ? i18n.t('home.demo') : i18n.t('home.real')
+    }),
   }).then(() => {
+    curType.value = curType.value === 'real' ? 'demo' : 'real'
     // on confirm
   }).catch(() => {
     // on cancel

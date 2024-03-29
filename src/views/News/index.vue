@@ -1,7 +1,7 @@
 <template>
   <div class="news">
     <div class="news-title">
-      财经新闻
+      {{ $t('news.title') }}
     </div>
     <div class="news-banner">
       <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
@@ -16,7 +16,7 @@
         <van-list
           v-model:loading="loading"
           :finished="finished"
-          finished-text="没有更多了"
+          :finished-text="$t('public.noData')"
           @load="onLoad">
           <div class="item" v-for="item in list" :key="item" :title="item">
             <div class="left">

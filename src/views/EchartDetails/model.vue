@@ -1,58 +1,98 @@
 <template>
-  <van-action-sheet v-model:show="show" closeable style="max-height:95vh;height:95vh">
+  <van-action-sheet
+    v-model:show="show"
+    closeable
+    style="max-height:95vh;height:95vh">
     <div class="content">
       <div class="content-header">
         <div
-          @click="curType = item.value"
+          @click="selectType(item)"
           :class="curType === item.value ? 'active' : ''"
           class="content-header-item"
           v-for="(item, index) in typeList"
           :key="index">
-          {{ item.label }}
+          {{ $t(item.label) }}
         </div>
       </div>
       <div class="content-number">
         <div class="number">$ 1.26342</div>
-        <div class="title">市价</div>
+        <div class="title">{{ $t('echartDetails.marketPrice') }}</div>
       </div>
       <div class="content-input">
         <div class="item" v-if="curType === 'a'">
           <div class="input">
-            <div>掛單價格</div>
-            <van-field v-model="number" type="number" placeholder="请输入" />
-            <van-switch v-model="checked" size="14px" />
+            <div>{{ $t('echartDetails.orderPlacement') }}</div>
+            <van-field
+              v-model="formData.orderPlacement"
+              type="number"
+              :placeholder="$t('public.placeholderMoney')" />
+            <van-switch
+              @change="(e) => changeSwitch(e, 'orderPlacement')"
+              v-model="checked.orderPlacement"
+              size="14px" />
           </div>
-          <div class="tips">價格限制&gt=1.26259</div>
+          <div class="tips">{{ $t('echartDetails.pricelimit') }}&gt=1.26259</div>
         </div>
         <div class="item">
           <div class="input">
-            <div>止盈</div>
-            <van-field v-model="number" type="number" placeholder="请输入" />
-            <van-switch v-model="checked" size="14px" />
+            <div>{{ $t('echartDetails.stopSurplus') }}</div>
+            <van-field
+              v-model="formData.stopSurplus"
+              type="number"
+              :placeholder="$t('public.placeholderMoney')" />
+            <van-switch
+              @change="(e) => changeSwitch(e, 'stopSurplus')"
+              v-model="checked.stopSurplus"
+              size="14px" />
           </div>
-          <div class="tips">價格限制&lt=1.26284 </div>
+          <div class="tips">{{ $t('echartDetails.pricelimit') }}&lt=1.26284 </div>
         </div>
         <div class="item">
           <div class="input">
-            <div>止損</div>
-            <van-field v-model="number" type="number" placeholder="请输入" />
-            <van-switch v-model="checked" size="14px" />
+            <div>{{ $t('echartDetails.stopLoss') }}</div>
+            <van-field
+              v-model="formData.stopLoss"
+              type="number"
+              :placeholder="$t('public.placeholderMoney')" />
+            <van-switch
+              @change="(e) => changeSwitch(e, 'stopLoss')"
+              v-model="checked.stopLoss"
+              size="14px" />
           </div>
-          <div class="tips">價格限制&gt=1.26284</div>
+          <div class="tips">{{ $t('echartDetails.pricelimit') }}&gt=1.26284</div>
         </div>
         <div class="item">
           <div class="input">
-            <div>数量<span class="sublabel">(0.01~99999.99)</span></div>
-            <van-field v-model="number" type="number" placeholder="请输入" />
+            <div>{{ $t('echartDetails.number') }}<span class="sublabel">(0.01~99999.99)</span></div>
+            <van-field
+              v-model="formData.number"
+              type="number"
+              :placeholder="$t('public.placeholderMoney')" />
           </div>
         </div>
-        <div class="tips">槓桿：100</div>
-        <div class="tips">手續費：0USDT</div>
-        <div class="tips">參攷保證金：10USDT</div>
+        <div class="tips">{{ $t('echartDetails.lever') }}：100</div>
+        <div class="tips">{{ $t('echartDetails.fees') }}：0USDT</div>
+        <div class="tips">{{ $t('echartDetails.margin') }}：10USDT</div>
       </div>
       <div class="content-btn">
-        <van-button round type="danger" size="normal" block v-if="props.buySellType === 'sell'">賣出 (可用餘額:0USDT)</van-button>
-        <van-button round type="primary" size="normal" block v-else>买入 (可用餘額:0USDT)</van-button>
+        <van-button
+          @click="sell"
+          round
+          type="danger"
+          size="normal"
+          block v-if="props.buySellType === 'sell'">
+          <span>{{ $t('echartDetails.sell') }}</span>
+          <span>({{ $t('echartDetails.available') }}:0USDT)</span>
+        </van-button>
+        <van-button
+          round
+          @click="buy"
+          type="primary"
+          size="normal"
+          block v-else>
+          <span>{{ $t('echartDetails.buy') }}</span>
+          <span>({{ $t('echartDetails.available') }}:0USDT)</span>
+        </van-button>
       </div>
     </div>
   </van-action-sheet>
@@ -65,9 +105,18 @@ const props = defineProps({
     default: "sell"
   }
 })
-const checked = ref(false)
 const show = ref(false)
-const number = ref()
+const formData = ref({
+  orderPlacement: "",
+  stopSurplus: "",
+  stopLoss: "",
+  number: ""
+})
+const checked = ref({
+  orderPlacement: false,
+  stopSurplus: false,
+  stopLoss: false,
+})
 const setShow = () => {
   show.value = !show.value
   curType.value = 'a'
@@ -75,11 +124,25 @@ const setShow = () => {
 
 const curType = ref('a')
 const typeList = [
-  { label: "市价", value: 'a' },
-  { label: "挂单", value: 'b' }
+  { label: "echartDetails.marketPrice", value: 'a' },
+  { label: "echartDetails.orderPlacement", value: 'b' }
 ]
-const selectType = () => {
-
+// 切换类型
+const selectType = (item) => {
+  curType.value = item.value
+  console.log(item);
+}
+// 卖出
+const sell = () => {
+  console.log('卖出');
+}
+// 买入
+const buy = () => {
+  console.log('买入');
+}
+//切换开关
+const changeSwitch = (e, type) => {
+  console.log(e, type);
 }
 defineExpose({
   setShow

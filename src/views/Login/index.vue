@@ -5,34 +5,34 @@
       <img :src="logo" alt="">
     </div>
     <div class="login-title">
-      <div class="title">登 錄</div>
-      <div class="subtitle">登入以繼續</div>
+      <div class="title">{{ $t('login.login') }}</div>
+      <div class="subtitle">{{ $t('login.tips') }}</div>
     </div>
     <div class="login-form">
       <van-field
         class="login-form-item"
-        v-model="username"
-        placeholder="請輸入郵箱地址"
-        :rules="[{ required: true, message: '請輸入郵箱地址' }]" />
+        v-model="formData.email"
+        :placeholder="$t('public.placeholderEmail')"
+        :rules="[{ required: true, message: $t('public.placeholderEmail') }]" />
       <van-field
         class="login-form-item"
-        v-model="password"
+        v-model="formData.password"
         type="password"
-        placeholder="請輸入密碼"
-        :rules="[{ required: true, message: '請輸入密碼' }]" />
+        :placeholder="$t('public.placeholderPwd')"
+        :rules="[{ required: true, message: $t('public.placeholderPwd') }]" />
     </div>
     <div class="login-tips">
-      <span>忘記密碼了？</span>
-      <span @click="jumpUrl('/forgetPwd')">找回</span>
+      <span>{{ $t('login.forgetPwd') }}</span>
+      <span @click="jumpUrl('/forgetPwd')">{{ $t('login.retrieve') }}</span>
     </div>
     <div class="login-btn">
       <van-button round block color="#FFFFFF" @click="login">
-        <span class="text">登 錄</span>
+        <span class="text">{{ $t('login.login') }}</span>
       </van-button>
     </div>
     <div class="login-tips">
-      <span>沒有帳號？</span>
-      <span @click="jumpUrl('/register')">注 冊</span>
+      <span>{{ $t('login.noAccount') }}</span>
+      <span @click="jumpUrl('/register')">{{ $t('login.register') }}</span>
     </div>
   </div>
 </template>
@@ -43,10 +43,17 @@ import logo from '@/assets/images/logo.png'
 import Header from '@/components/header.vue'
 import { useRouter } from 'vue-router';
 const router = useRouter()
+const formData = ref({
+  email: '',
+  password: ''
+})
+//跳转
 const jumpUrl = (item) => {
   router.push(item)
 }
+// 提交
 const login = () => {
+  console.log(formData.value);
   localStorage.setItem('token', 123)
   jumpUrl('/')
 }

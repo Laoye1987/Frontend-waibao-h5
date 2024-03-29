@@ -1,25 +1,25 @@
 <template>
-  <NavBar leftText="实名认证" />
+  <NavBar :leftText="$t('my.realName')" />
   <div class="real-name-box">
     <div class="item">
-      <div class="label">真实姓名</div>
-      <van-field class="input" v-model="name" placeholder="请输入真实姓名" />
+      <div class="label">{{ $t('my.real') }}</div>
+      <van-field class="input" v-model="name" :placeholder="$t('public.placeholder')" />
     </div>
     <div class="item">
-      <div class="label">证件号</div>
-      <van-field class="input" v-model="idNum" placeholder="请输入证件号" />
+      <div class="label">{{ $t('my.IDNumber') }}</div>
+      <van-field class="input" v-model="idNum" :placeholder="$t('public.placeholder')" />
     </div>
     <div class="item">
-      <div class="label">身份证正面</div>
+      <div class="label">{{ $t('my.front') }}</div>
       <van-uploader :after-read="afterRead1" />
     </div>
     <div class="item">
-      <div class="label">身份证背面</div>
+      <div class="label">{{ $t('my.back') }}</div>
       <van-uploader :after-read="afterRead2" />
     </div>
   </div>
   <div class="btn">
-    <van-button type="primary" block>提交</van-button>
+    <van-button type="primary" block>{{ $t('public.submit') }}</van-button>
   </div>
 </template>
 

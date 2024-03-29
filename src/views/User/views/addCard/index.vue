@@ -1,48 +1,48 @@
 <template>
-  <NavBar leftText="银行卡" />
+  <NavBar :leftText="$t('home.card')" />
   <div class="add-wallet-box">
     <div class="item">
-      <div class="label">银行名称</div>
+      <div class="label">{{ $t('home.bankName') }}</div>
       <van-field
         class="input"
         v-model="cardName"
         autosize
-        placeholder="银行名称" />
+        :placeholder="$t('public.placeholder')" />
     </div>
     <div class="item">
-      <div class="label">银行卡</div>
+      <div class="label">{{ $t('my.bankCard') }}</div>
       <van-field
         class="input"
         v-model="cardNum"
         autosize
-        placeholder="银行卡" />
+        :placeholder="$t('public.placeholder')" />
     </div>
     <div class="item">
-      <div class="label">开户人</div>
+      <div class="label">{{ $t('my.accountHolder') }}</div>
       <van-field
         class="input"
         v-model="cardPeople"
         autosize
-        placeholder="开户人" />
+        :placeholder="$t('public.placeholder')" />
     </div>
     <div class="item">
-      <div class="label">银行地址</div>
+      <div class="label">{{ $t('my.bankAddr') }}</div>
       <van-field
         class="input"
         v-model="cardAddr"
         autosize
-        placeholder="银行地址" />
+        :placeholder="$t('public.placeholder')" />
     </div>
     <div class="item">
-      <div class="label">银行国际程式码</div>
+      <div class="label">{{ $t('my.bankCode') }}</div>
       <van-field
         class="input"
         v-model="cardCode"
         autosize
-        placeholder="银行国际程式码" />
+        :placeholder="$t('public.placeholder')" />
     </div>
     <div class="btn">
-      <van-button type="primary" block @click="handleSave">保存</van-button>
+      <van-button type="primary" block @click="handleSave">{{ $t('public.submit') }}</van-button>
     </div>
   </div>
 </template>

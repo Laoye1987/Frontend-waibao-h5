@@ -2,7 +2,7 @@
   <div class="header">
     <div class="back" v-show="isBack" @click="backUrl">
       <van-icon size="16" name="arrow-left" />
-      <span>返回</span>
+      <span>{{ $t('public.back') }}</span>
     </div>
     <div class="lang" v-show="isLang" @click="pickerLangRef.selectLang">
       <van-icon :name="lang" size="20" />

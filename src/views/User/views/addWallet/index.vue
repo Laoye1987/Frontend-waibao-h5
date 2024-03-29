@@ -1,28 +1,28 @@
 <template>
-  <NavBar leftText="新钱包" />
+  <NavBar :leftText="$t('my.newWallet')" />
   <div class="add-wallet-box">
     <div class="item">
-      <div class="label">货币选择</div>
+      <div class="label">{{ $t('home.tokenSelect') }}</div>
       <van-field
         class="input"
         v-model="fieldValue"
         is-link
         readonly
-        placeholder="请选择"
+        :placeholder="$t('public.placeholder')"
         @click="myPickerRef.show()" />
     </div>
     <div class="item">
-      <div class="label">添加地址</div>
+      <div class="label">{{ $t('my.addAddr') }}</div>
       <van-field
         class="input"
         v-model="addr"
         rows="3"
         autosize
         type="textarea"
-        placeholder="在这里填写你的地址" />
+        :placeholder="$t('public.placeholder')" />
     </div>
     <div class="btn">
-      <van-button type="primary" block @click="handleSave">保存</van-button>
+      <van-button type="primary" block @click="handleSave">{{ $t('my.preserve') }}</van-button>
     </div>
   </div>
   <MyPicker ref="myPickerRef" :options="moneyOptions" @confirm="handleConfirm" />

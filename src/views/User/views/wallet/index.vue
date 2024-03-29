@@ -1,6 +1,6 @@
 <template>
   <div class="wallet">
-    <NavBar leftText="返回">
+    <NavBar :leftText="$t('public.back')">
       <template #right>
         <van-icon size="14" name="plus" @click="handleRouter" />
       </template>
@@ -12,7 +12,7 @@
           :class="curType === item.value ? 'active' : ''"
           v-for="(item, index) in typeList"
           :key="index">
-          {{ item.label }}
+          {{ $t(item.label) }}
         </div>
       </div>
     </div>
@@ -34,8 +34,8 @@ const router = useRouter()
 
 const curType = ref('addr')
 const typeList = [
-  { label: "钱包地址", value: "addr" },
-  { label: "银行卡", value: "card" },
+  { label: "my.walletAddr", value: "addr" },
+  { label: "my.card", value: "card" },
 ]
 const selectType = (item) => {
   curType.value = item.value
