@@ -14,7 +14,7 @@ export default {
     pleaseSelect: '请选择',
     copySuccess: '复制成功',
     error: '错误',
-    placeholder: '请输入'
+    placeholder: '请输入',
   },
   // 登录注册
   login: {
@@ -60,6 +60,8 @@ export default {
     tokenSelect: '货币选择',
     transfer: '請往此地劃轉',
     upLoadV: '上傳憑證',
+    hot: "熱門",
+    more: "更多"
   },
   market: {
     collection: '收藏',

@@ -59,7 +59,9 @@ export default {
     limitNumber: 'الحد الأدنى للإيداع',
     tokenSelect: 'اختيار العملة',
     transfer: 'الرجاء التحويل إلى هنا',
-    upLoadV: 'تحميل الوثائق'
+    upLoadV: 'تحميل الوثائق',
+    hot: "الأكثر شعبية",
+    more: "أكثر"
   },
   market: {
     collection: 'مجموعة',

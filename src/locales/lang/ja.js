@@ -60,6 +60,8 @@ export default {
     tokenSelect: '通貨選択',
     transfer: 'こちらに送金してください',
     upLoadV: '証明書をアップロード',
+    hot: "人気",
+    more: "もっと"
   },
   market: {
     collection: 'お気に入り',

@@ -59,7 +59,9 @@ export default {
     limitNumber: 'Dépôt minimum',
     tokenSelect: 'Sélection de la devise',
     transfer: 'Veuillez transférer ici',
-    upLoadV: 'Télécharger des justificatifs'
+    upLoadV: 'Télécharger des justificatifs',
+    hot: "populaire",
+    more: "plus"
   },
   market: {
     collection: 'Collection',

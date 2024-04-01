@@ -14,7 +14,7 @@ export default {
     pleaseSelect: 'пожалуйста, выберите',
     copySuccess: 'успешно скопировано',
     error: 'ошибка',
-    placeholder: 'пожалуйста, введите'
+    placeholder: 'пожалуйста, введите',
   },
   // Вход и регистрация
   login: {
@@ -59,7 +59,9 @@ export default {
     limitNumber: 'минимальная сумма взноса',
     tokenSelect: 'выберите валюту',
     transfer: 'пожалуйста, переведите сюда',
-    upLoadV: 'загрузить документы'
+    upLoadV: 'загрузить документы',
+    hot: "горячий",
+    more: "больше"
   },
   market: {
     collection: 'коллекция',

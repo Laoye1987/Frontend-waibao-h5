@@ -60,6 +60,8 @@ export default {
     tokenSelect: 'Currency selection',
     transfer: 'Please transfer here',
     upLoadV: 'Upload certificate',
+    hot: "Hot",
+    more: "More"
   },
   market: {
     collection: 'Collection',

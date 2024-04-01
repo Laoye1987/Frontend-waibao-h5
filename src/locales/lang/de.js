@@ -60,6 +60,8 @@ export default {
     tokenSelect: 'Währung auswählen',
     transfer: 'Bitte hierhin überweisen',
     upLoadV: 'Nachweise hochladen',
+    hot: "beliebt",
+    more: "mehr"
   },
   market: {
     collection: 'Sammlung',

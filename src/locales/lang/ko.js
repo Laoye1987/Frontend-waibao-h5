@@ -60,6 +60,8 @@ export default {
     tokenSelect: '화폐 선택',
     transfer: '여기로 이체해주세요',
     upLoadV: '증명서 업로드',
+    hot: "인기 있는",
+    more: "더 많은"
   },
   market: {
     collection: '수집',

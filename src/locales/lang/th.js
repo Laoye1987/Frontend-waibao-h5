@@ -60,6 +60,8 @@ export default {
     tokenSelect: 'เลือกเหรียญ',
     transfer: 'โปรดโอนมาที่นี่',
     upLoadV: 'อัปโหลดหลักฐาน',
+    hot: "น่าสนใจ",
+    more: "มากขึ้น"
   },
   market: {
     collection: 'รวบรวม',

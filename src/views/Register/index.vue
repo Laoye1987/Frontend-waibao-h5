@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <Header :isLang="false" />
+    <Header />
     <div class="register-logo">
       <img :src="logo" alt="">
     </div>
